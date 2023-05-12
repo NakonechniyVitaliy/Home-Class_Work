@@ -1,19 +1,18 @@
-#2
-sh= 12.5
-dov= 16.7
+import time
 
-Perumetr=2*(12.5+16.7)
-print("Периметр=",Perumetr)
+def decoretor(func):
+    def wrapper():
+        first_point = time.perf_counter()
+        print("Час початку роботи функції = ", first_point)
+        func()
+        second_point = time.perf_counter()
+        print("Час кінця роботи функції = ", second_point)
+        print(f"Функція виконувалась  = {second_point - first_point:.8f} сек.")
+    return wrapper
 
-Plosha=12.5*16.7
-print("Площа=",Plosha)
+@decoretor
+def hello():
+    time.sleep(3)
+    return("Hello, World!")
 
-#3
-print("Переміщення займе",200/80, "годин")8
-
-#7
-print(type(12))
-print(type(2.4))
-
-#9
-print("2 в 179 ступені =", 2**79)
+hello()
